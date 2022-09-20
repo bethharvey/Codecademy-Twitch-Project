@@ -1,0 +1,3 @@
+SELECT
+	DISTINCT(game)
+FROM stream;
