@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/macbeth/Documents/Codecademy_Projects/Twitch/Codecademy-Twitch-Project/twitch.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="859"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,4:mainchat"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="1.sql">-- SELECT *
+-- FROM stream
+-- LIMIT 20;
+
+SELECT * 
+FROM chat
+LIMIT 20;</sql><sql name="2.sql">SELECT
+	DISTINCT(game)
+FROM stream;</sql><sql name="3.sql">SELECT 
+	DISTINCT(channel)
+FROM stream;</sql><sql name="4.sql">SELECT	
+	game,
+	COUNT(*)
+FROM stream
+GROUP BY 1
+ORDER BY 2 DESC;</sql><sql name="5.sql">SELECT	
+	country,
+	COUNT(*)
+FROM stream
+GROUP BY 1
+ORDER BY 2 DESC;</sql><sql name="6.sql">SELECT	
+	player,
+	COUNT(*)
+FROM stream
+GROUP BY 1
+ORDER BY 2 DESC;</sql><sql name="7.sql">SELECT
+	game,
+	CASE
+		WHEN game = 'League of Legends'
+			OR game = 'Dota 2'
+			OR game = 'Heroes of the Storm'
+			THEN 'MOBA'
+		WHEN game = 'Counter-Strike: Global Offensive'
+			THEN 'FPS'
+		WHEN game = 'DayZ'
+			OR game = 'ARK: Survival Evolved'
+			THEN 'Survival'
+		ELSE 'Other'
+		END AS 'genre',
+		COUNT(*)
+	FROM stream
+	GROUP BY 1
+	ORDER BY 3 DESC;</sql><sql name="8.sql">SELECT time
+FROM stream
+LIMIT 10;</sql><sql name="9.sql">SELECT time,
+	strftime('%S', time)
+FROM stream
+GROUP BY 1
+LIMIT 20;</sql><sql name="10.sql">SELECT	
+	strftime('%H', time),
+	COUNT(*)
+FROM stream
+WHERE country = 'US'
+GROUP BY 1;</sql><sql name="11.sql">SELECT *
+FROM stream
+JOIN chat	
+	ON stream.device_id = chat.device_id;</sql><current_tab id="10"/></tab_sql></sqlb_project>
